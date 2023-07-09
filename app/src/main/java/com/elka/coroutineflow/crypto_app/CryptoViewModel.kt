@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class CryptoViewModel : ViewModel() {
@@ -20,15 +20,18 @@ class CryptoViewModel : ViewModel() {
 
   private fun loadData() {
     viewModelScope.launch {
-      while (true) {
-        val currentState = _state.value
-        if (currentState !is State.Content || currentState.currencyList.isEmpty()) {
-          _state.value = State.Loading
-        }
-        val currencyList = repository.getCurrencyList()
-        _state.value = State.Content(currencyList = currencyList)
-        delay(3000)
-      }
+      repository.loadList()
+        .onStart { _state.value = State.Loading }  // выполняется при старте записи в поток
+        .filter { it.isNotEmpty() }   // фильтрация содержимого потока
+        .onEach { _state.value = State.Content(currencyList = it) } // без возможности его изменить
+        .collect()
     }
+
+    // equal it
+    repository.loadList()
+      .onStart { _state.value = State.Loading }  // выполняется при старте записи в поток
+      .filter { it.isNotEmpty() }   // фильтрация содержимого потока
+      .onEach { _state.value = State.Content(currencyList = it) } // без возможности его изменить
+      .launchIn(viewModelScope)
   }
 }
