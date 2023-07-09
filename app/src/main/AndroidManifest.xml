@@ -20,8 +20,8 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name="com.elka.coroutineflow.lesson2.Users2Activity" />
-    <activity android:name="com.elka.coroutineflow.lesson2.UsersActivity" />
+    <activity android:name="com.elka.coroutineflow.lessons.lesson2.Users2Activity" />
+    <activity android:name="com.elka.coroutineflow.lessons.lesson2.UsersActivity" />
     <activity android:name="com.elka.coroutineflow.crypto_app.CryptoActivity" />
   </application>
 

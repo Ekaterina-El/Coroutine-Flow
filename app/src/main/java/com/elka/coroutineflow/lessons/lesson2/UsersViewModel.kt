@@ -1,4 +1,4 @@
-package com.elka.coroutineflow.lesson2
+package com.elka.coroutineflow.lessons.lesson2
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,13 +20,13 @@ class UsersViewModel : ViewModel() {
 
   fun addUser(user: String) {
     viewModelScope.launch {
-      repository.addUser(user)
+      UsersRepository.addUser(user)
     }
   }
 
   private fun loadUsers() {
     viewModelScope.launch {
-      repository.loadUsers().collect {
+      UsersRepository.loadUsers().collect {
         _users.value = it
       }
     }

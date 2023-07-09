@@ -1,4 +1,4 @@
-package com.elka.coroutineflow.lesson2
+package com.elka.coroutineflow.lessons.lesson2
 
 import android.content.Context
 import android.content.Intent

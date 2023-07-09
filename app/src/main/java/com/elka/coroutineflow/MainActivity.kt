@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.elka.coroutineflow.crypto_app.CryptoActivity
 import com.elka.coroutineflow.databinding.ActivityMainBinding
-import com.elka.coroutineflow.lesson2.UsersActivity
+import com.elka.coroutineflow.lessons.lesson2.UsersActivity
 
 class MainActivity : AppCompatActivity() {
 
